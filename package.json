@@ -1,0 +1,23 @@
+{
+  "name": "@hhaus-org-test/marketing-site-e2e",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "Independent exact-SHA acceptance tests for the H/HAUS Astro marketing site.",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "test": "npm run test:contracts && npm run test:source",
+    "test:contracts": "node --test tests/contracts.test.mjs",
+    "test:source": "node --test tests/source-build.test.mjs",
+    "test:live": "node --test tests/live-http.test.mjs",
+    "test:live:pinned": "node scripts/run-pinned-live-test.mjs",
+    "verify": "npm test && npm run test:live:pinned"
+  },
+  "devDependencies": {
+    "ajv": "8.20.0",
+    "cheerio": "1.2.0"
+  }
+}
