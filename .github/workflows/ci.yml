@@ -9,6 +9,7 @@ on:
       base_url:
         description: Optional public origin for read-only live HTTP acceptance
         required: false
+        default: https://hhaus.org
         type: string
 
 permissions:

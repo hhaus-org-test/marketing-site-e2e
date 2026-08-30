@@ -60,6 +60,16 @@ export const assertCityDocument = (html, city) => {
   assert.equal($(`a[href="/apply/?city=${city.slug}"]`).length, 1);
 };
 
+export const assertCityRedirectResponse = (response, requestUrl, city, canonicalOrigin) => {
+  assert.equal(response.status, 308, `${city.hostname} did not return HTTP 308`);
+  const locationHeader = response.headers.get('location');
+  assert.ok(locationHeader, `${city.hostname} omitted the Location header`);
+  const actual = new URL(locationHeader, requestUrl);
+  const expected = new URL(city.path, `${canonicalOrigin}/`);
+  expected.search = requestUrl.search;
+  assert.equal(actual.href, expected.href, `${city.hostname} canonical redirect drift`);
+};
+
 const collectFiles = async (root, relative = '') => {
   const entries = await readdir(join(root, relative), { withFileTypes: true });
   const files = [];

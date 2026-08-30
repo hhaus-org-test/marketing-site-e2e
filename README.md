@@ -9,7 +9,7 @@ result without reading or changing a production working tree.
 ## Pinned candidate
 
 - Source repository: `hhaus-org/hhaus-org.github.io`
-- Source revision: `daee1537313aed1951c0c8df7281a154c0b79f3a`
+- Source revision: `9a8d92dbde14ab6eea1286fa82283c8e9b06c2a5`
 - Source pull request: [hhaus-org/hhaus-org.github.io#1](https://github.com/hhaus-org/hhaus-org.github.io/pull/1)
 - Test organization Linear project: [github.com/hhaus-org-test](https://linear.app/denman/project/githubcomhhaus-org-test-cb9b5d737f9f)
 - Test organization GitHub Project: [hhaus-org-test project 1](https://github.com/orgs/hhaus-org-test/projects/1)
@@ -51,6 +51,11 @@ BASE_URL=https://hhaus.org npm run test:live
 The live suite requires the deployed `hhaus-source-sha` metadata marker to equal
 the immutable source revision in `contracts/source.json`. A reachable but stale
 deployment fails acceptance.
+
+When `BASE_URL` is the canonical `https://hhaus.org` origin, live acceptance
+also probes all seven city hostnames without following redirects. Each city host
+must return HTTP 308 to its exact canonical `/locations/<slug>/` path and
+preserve the complete acceptance query string.
 
 ## What is certified
 

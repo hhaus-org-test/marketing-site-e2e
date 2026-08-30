@@ -6,12 +6,13 @@ import {
   expectedPublicRoutes,
   loadContracts,
 } from '../scripts/lib/contracts.mjs';
+import { assertCityRedirectResponse } from '../scripts/lib/site-assertions.mjs';
 
 const contracts = await loadContracts();
 
 test('source contract is closed around one immutable production revision', () => {
   assert.doesNotThrow(() => assertExactContractIdentity(contracts));
-  assert.equal(contracts.source.source_revision, 'daee1537313aed1951c0c8df7281a154c0b79f3a');
+  assert.equal(contracts.source.source_revision, '9a8d92dbde14ab6eea1286fa82283c8e9b06c2a5');
   assert.equal(contracts.source.framework, 'astro');
   assert.equal(contracts.source.package_manager, 'npm');
   assert.equal(contracts.source.production_mutation_allowed, false);
@@ -49,4 +50,22 @@ test('public artifact route set is exact and bounded', () => {
     '/locations/cdmx/',
     '/locations/montreal/',
   ]);
+});
+
+test('city redirect assertion requires exact 308 target and complete query preservation', () => {
+  for (const city of contracts.routes.cities) {
+    const requestUrl = new URL(`https://${city.hostname}/?acceptance=marketing-site-e2e&city=${city.slug}`);
+    const expected = new URL(city.path, `${contracts.routes.canonical_origin}/`);
+    expected.search = requestUrl.search;
+    const response = new Response(null, {
+      status: 308,
+      headers: { location: expected.href },
+    });
+    assert.doesNotThrow(() => assertCityRedirectResponse(
+      response,
+      requestUrl,
+      city,
+      contracts.routes.canonical_origin,
+    ));
+  }
 });
