@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "canonical_origin": "https://hhaus.org",
+  "redirect_status": 308,
+  "preserve_query": true,
+  "unknown_host_policy": "fail_closed",
+  "reserved_application_hosts": [
+    "auth.hhaus.org",
+    "org.hhaus.org",
+    "user.hhaus.org",
+    "api.hhaus.org",
+    "admin.hhaus.org",
+    "api-admin.hhaus.org"
+  ],
+  "cities": [
+    { "slug": "berlin", "name": "Berlin", "hostname": "berlin.hhaus.org", "path": "/locations/berlin/" },
+    { "slug": "medellin", "name": "Medellín", "hostname": "medellin.hhaus.org", "path": "/locations/medellin/" },
+    { "slug": "tokyo", "name": "Tokyo", "hostname": "tokyo.hhaus.org", "path": "/locations/tokyo/" },
+    { "slug": "london", "name": "London", "hostname": "london.hhaus.org", "path": "/locations/london/" },
+    { "slug": "sao-paulo", "name": "São Paulo", "hostname": "sao-paulo.hhaus.org", "path": "/locations/sao-paulo/" },
+    { "slug": "cdmx", "name": "CDMX", "hostname": "cdmx.hhaus.org", "path": "/locations/cdmx/" },
+    { "slug": "montreal", "name": "Montréal", "hostname": "montreal.hhaus.org", "path": "/locations/montreal/" }
+  ]
+}

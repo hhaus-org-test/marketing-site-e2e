@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "consumer_repository": "hhaus-org-test/marketing-site-e2e",
+  "source_repository": "hhaus-org/hhaus-org.github.io",
+  "source_revision": "9a8d92dbde14ab6eea1286fa82283c8e9b06c2a5",
+  "source_pull_request": "https://github.com/hhaus-org/hhaus-org.github.io/pull/1",
+  "framework": "astro",
+  "package_manager": "npm",
+  "revision_policy": "immutable_40_character_sha",
+  "source_access": "read_only",
+  "production_mutation_allowed": false
+}

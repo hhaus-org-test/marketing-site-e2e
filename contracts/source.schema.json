@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "H/HAUS immutable source contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "consumer_repository",
+    "source_repository",
+    "source_revision",
+    "source_pull_request",
+    "framework",
+    "package_manager",
+    "revision_policy",
+    "source_access",
+    "production_mutation_allowed"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "consumer_repository": { "const": "hhaus-org-test/marketing-site-e2e" },
+    "source_repository": { "const": "hhaus-org/hhaus-org.github.io" },
+    "source_revision": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "source_pull_request": { "const": "https://github.com/hhaus-org/hhaus-org.github.io/pull/1" },
+    "framework": { "const": "astro" },
+    "package_manager": { "const": "npm" },
+    "revision_policy": { "const": "immutable_40_character_sha" },
+    "source_access": { "const": "read_only" },
+    "production_mutation_allowed": { "const": false }
+  }
+}

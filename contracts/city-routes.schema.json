@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "H/HAUS seven-city route contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "canonical_origin",
+    "redirect_status",
+    "preserve_query",
+    "unknown_host_policy",
+    "reserved_application_hosts",
+    "cities"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "canonical_origin": { "const": "https://hhaus.org" },
+    "redirect_status": { "const": 308 },
+    "preserve_query": { "const": true },
+    "unknown_host_policy": { "const": "fail_closed" },
+    "reserved_application_hosts": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[a-z-]+[.]hhaus[.]org$" }
+    },
+    "cities": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["slug", "name", "hostname", "path"],
+        "properties": {
+          "slug": { "type": "string", "pattern": "^[a-z]+(?:-[a-z]+)*$" },
+          "name": { "type": "string", "minLength": 2 },
+          "hostname": { "type": "string", "pattern": "^[a-z]+(?:-[a-z]+)*[.]hhaus[.]org$" },
+          "path": { "type": "string", "pattern": "^/locations/[a-z]+(?:-[a-z]+)*/$" }
+        }
+      }
+    }
+  }
+}
